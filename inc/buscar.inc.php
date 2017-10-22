@@ -1,5 +1,5 @@
 <section id="buscador">
-	<form method="GET" action="busqueda.php">
+	<form method="POST" action="busqueda.php">
 		<input type="text" name="busqueda" placeholder="Buscar...">
 		<label for="palabras">Todas las palabras</label>
 		<input type="radio" name="palabras" value="0">

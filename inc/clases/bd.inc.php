@@ -36,6 +36,7 @@ class Bd{
 	}
 
 	public function mostrarEntradas(){
+
 		return $this->entradas;
 
 	}
@@ -65,6 +66,12 @@ class Bd{
 
 		}
 		
+	}
+
+	public function mostrarUsuarios(){
+
+		return $this->usuarios;
+
 	}
 
 	//metodos para los comentarios
