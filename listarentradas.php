@@ -58,7 +58,7 @@
 
 					echo '<li>' .$entrada->titulo. '
 								<a href="editarentradas.php?identrada=' .$entrada->idEntrada. '">Editar</a>
-								<a href="eliminarentradas.php?identrada=' .$entrada->idEntrada. '">Eliminar</a>
+								<a href="editarentradas.php?identrada=' .$entrada->idEntrada. '">Eliminar</a>
 						  </li>';
 				}
 
