@@ -17,8 +17,14 @@
 //print_r($bdd->entradas);
 		$entradas = $bdd->mostrarEntradas();
 		//llega el id de la entrada
-		if(isset($_GET['idEntrada']) && $_GET['idEntrada']!='' ){
+		if(isset($_GET['idEntrada'])){
 
+			//COMPRUEBO SI EL ID DE LA ENTRADA ES UN NÚMERO
+			if(!preg_match('/[0-9]/', $_GET['idEntrada'])){
+				header('location: /');
+				exit();
+			}
+				
 			foreach ($entradas as $entrada){
 
 				if($entrada->idEntrada == $_GET['idEntrada']){
@@ -31,13 +37,20 @@
 						 </article>';
 
 
-						 //FALTA AÑADIR LOS COMENTARIOS
+						 //------->FALTA AÑADIR LOS COMENTARIOS
 				}
 			}
 		}
 		else if(isset($_GET['mes']) && isset($_GET['ano'])){
 
-			//FALTA MOSTRAR SOLO POR AÑO
+			//COMPRUEBO QUE EL MES Y EL AÑO TIENEN EL FORMATO CORRECTO
+			if(!preg_match('/^[0-9]{2}$/', $_GET['mes']) || !preg_match('/^[0-9]{4}$/', $_GET['ano'])){
+				header('location: /');
+				exit();
+			}
+
+
+			//------->FALTA MOSTRAR SOLO POR AÑO
 
 			foreach ($entradas as $entrada){
 

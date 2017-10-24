@@ -18,6 +18,9 @@
  	<?php
  		if(isset($_POST['nombre']) && isset($_POST['comentario'])){
 
+ 			if(!preg_match('/^[A-Z]{1}[a-z\s]/', $_POST['nombre']))
+ 				echo "nombre incorrecto";
+
  			$nombre = $_POST['nombre'];
  			$comentario = $_POST['comentario'];
 
