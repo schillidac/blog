@@ -14,10 +14,17 @@
 	?>
 
 	<h2>Login</h2>
+	<?php
+		if(isset($_GET['error']) && $_GET['error'] == true)
+			echo 'Login incorrecto';
+	?>
 
 	<form method="POST" action="listarentradas.php">
-		<label for="usuario">Usuario: </label><input type="text" name="usuario"><br>
-		<label for="pass">Contraseña: </label><input type="password" name="pass"><br>
+		<label for="usuario">Usuario: </label>
+			<input type="text" name="usuario"><br>
+		<label for="pass">Contraseña: </label>
+			<input type="password" name="pass"><br>
+			<input type="hidden" name="verificar" value="1">
 		<input type="submit" value="enviar">
 	</form>
 

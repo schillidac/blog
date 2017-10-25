@@ -1,4 +1,33 @@
-<?php require_once('inc/clases/bd.inc.php'); ?>
+<?php 
+
+	require_once('inc/clases/bd.inc.php'); 
+	if(isset($_POST['verificar']) && $_POST['verificar'] == 1){
+
+		if(isset($_POST['usuario']) && isset($_POST['pass'])){
+
+			$comprobante = false;
+			$usuarios = $bdd->mostrarUsuarios();
+
+			foreach($usuarios as $usuario){
+
+				if($usuario->user == $_POST['usuario'] && $usuario->pass == $_POST['pass'])
+				$comprobante = true;
+
+			}
+
+			if(!$comprobante){
+				header('Location: /login.php?error=true');
+				exit();
+			}
+		}
+	}
+	else{
+		header('Location: /login.php?error=true');
+		exit();
+	}
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="es">
