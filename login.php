@@ -15,6 +15,9 @@
 
 	<h2>Login</h2>
 	<?php
+		/* 
+			1.-Compruebo si la página de listar entradas me ha mandado una variable de error
+		*/
 		if(isset($_GET['error']) && $_GET['error'] == true)
 			echo 'Login incorrecto';
 	?>

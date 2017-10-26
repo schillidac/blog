@@ -1,6 +1,8 @@
 <?php 
 	require_once('inc/clases/bd.inc.php'); 
 
+	//1.Variables para usar en el formulario
+
 	$tituloPagina = "";
 	$identrada = "";
 	$titulo = "";
@@ -8,32 +10,61 @@
 	$etiqueta = "";
 	$validarFormulario = true;
 
-	//comprobando si llega el id de la entrada para editar
+	/*
+		COMPROBAMOS SI EL USUARIO QUIERE EDITAR O CREAR ENTRADA
+
+		2.Compruebo si llega el ID de la entrada, si llega...
+			la variable titulo valdrá editar entrada, luego se mostrará dentro de un h2
+				la variable identrada valdrá el id de la entrada
+
+	*/
 	if(isset($_GET['idEntrada'])){
-		$titulo = 'Editar Entrada';
+		$tituloPagina = 'Editar Entrada';
 		$identrada = $_GET['idEntrada'];
 	}
+	/*
+		3.Si no se ha enviado un id de entrada por url significa que el usuario quiere crear una entrada nueva
+			la variable titulo valdrá crear entrada, luego se mostrará dentro de un h2
+	*/
 	else
-		$titulo = 'Crear Entrada';
+		$tituloPagina = 'Crear Entrada';
 
-	//comprobando si el formulario se envía corréctamente
+	/*
+		COMPROBAMOS SI LA ENTRADA SE HA EDITADO O CREADO CORRECTAMENTE
+
+		4.Comprobamos que la variable verificar del formulario de esa página ha llegado y lo hace correctamente
+	*/
 	if(isset($_POST['verificar']) && $_POST['verificar'] == 1){
 
+		//4.1 Si el titulo de la entrada está vacío o tiene HTML la variable validar formulario valdrá false
 		if($_POST['titulo'] == "" || strcmp($_POST['titulo'], strip_tags($_POST['titulo'])) != 0)
 			$validarFormulario = false;
 
+		/*
+			4.2 Si validar formulario es true y...
+				contenido está vacío o contiene HTML
+		*/
 		if($validarFormulario && $_POST['contenido'] == "" || strcmp($_POST['contenido'], strip_tags($_POST['contenido'])) != 0)
 			$validarFormulario = false;
-
+		/*
+			4.3 Si validar formulario es true y...
+					entrada está vacía o contiene HTML
+		*/
 		if($validarFormulario && $_POST['etiqueta'] == "" || strcmp($_POST['etiqueta'], strip_tags($_POST['etiqueta'])) != 0)
 			$validarFormulario = false;
 
+		/*
+			4.4 Si validar formulario es false
+					guardo las variables del formulario para mostrarlas después en los values de los campos
+		*/
 		if(!$validarFormulario){
-			print_r($_POST);
 			$titulo = $_POST['titulo'];
 			$contenido = $_POST['contenido'];
 			$etiqueta = $_POST['etiqueta'];
 		}
+		/*
+			4.5 Si validar formulario es true redirecciono a listar entradas.
+		*/		
 		else{
 			header('Location: /listarentradas.php');
 			exit();
@@ -45,7 +76,7 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title><?= $tituloPagina ?></title>
 </head>
 <body>
 
