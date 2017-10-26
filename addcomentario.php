@@ -1,4 +1,45 @@
-<?php require_once('inc/clases/bd.inc.php'); ?>
+<?php 
+
+	require_once('inc/clases/bd.inc.php'); 
+
+	$mensaje = "";
+
+ 	if(!preg_match('/[0-9]/', $_GET['idEntrada'])){
+ 		header('Location: /');
+ 		exit();
+ 	}
+
+ 	if(isset($_POST['verificar']) && $_POST['verificar'] == 1){
+
+ 		$comprobante = false;
+
+		if(isset($_POST['nombre']) && !preg_match('/^([A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú\s]*)+$/', $_POST['nombre'])){
+
+			$mensaje = 'El nombre contiene caracteres inválidos';
+			$comprobante = true;
+		}
+
+
+		if(isset($_POST['comentario']) && strcmp($_POST['comentario'], strip_tags($_POST['comentario']))){
+
+			$mensaje = 'El comentario contiene caracteres inválidos';
+			$comprobante = true;
+		}
+		
+
+		if(!$comprobante){
+
+			$nombre = $_POST['nombre'];
+			$comentario = $_POST['comentario'];
+
+			$mensaje = '<i>Comentario guardado</i><br><br>
+						Nombre: ' .$nombre. '<br>
+				  		Comentario: ' .$comentario;  
+
+		}		
+ 	}
+ 	
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -11,47 +52,14 @@
 		require_once('inc/header.inc.php'); 
 		require_once('inc/buscar.inc.php');
 		require_once('inc/aside.inc.php');
+
+		echo $mensaje;
+
+		if(!isset($_POST['verificar']) || $_POST['verificar'] != 1){
 	?>
 
 	<h2>Añadir comentario</h2>
-
- 	<?php
-
- 	if(!preg_match('/[0-9]/', $_GET['idEntrada'])){
- 		header('Location: /');
- 		exit();
- 	}
-
- 	if(isset($_POST['verificar']) && $_POST['verificar'] == 1){
-
- 		$comprobante = false;
-
-		if(isset($_POST['nombre']) && !preg_match('/^([A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú\s]*)+$/', $_POST['nombre'])){
-			echo 'El nombre contiene caracteres inválidos';
-			$comprobante = true;
-		}
-
-
-		if(isset($_POST['comentario']) && strcmp($_POST['comentario'], strip_tags($_POST['comentario']))){
-			echo 'El comentario contiene caracteres inválidos';
-			$comprobante = true;
-		}
-		
-
-		if(!$comprobante){
-
-			$nombre = $_POST['nombre'];
-			$comentario = $_POST['comentario'];
-
-			echo '<i>Comentario guardado</i><br><br>';
-
-			echo 'Nombre: ' .$nombre. '<br>
-				  Comentario: ' .$comentario;  
-
-		}		
- 	}
- 	else{
- 	?>	
+	
 		<form method="POST" action="#">
 			<p>Se va a añadir un comentario a la entrada XXX<br>
 				*<i>Los comentarios están sujetos a la moderación de un administrador</i></p>

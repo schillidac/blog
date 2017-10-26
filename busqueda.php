@@ -1,4 +1,27 @@
-<?php require_once('inc/clases/bd.inc.php'); ?>
+<?php 
+
+	require_once('inc/clases/bd.inc.php'); 
+
+	$contenido = "";
+
+	if(!isset($_POST['verificador']) || $_POST['verificador'] != 1){
+		header('Location: '. $_SERVER['HTTP_REFERER']);
+
+	}
+
+	if(isset($_POST['busqueda']) && isset($_POST['palabras']) && ($_POST['palabras'] == 1 || $_POST['palabras'] == 0)){
+
+		$contenido 	= 	'Busqueda: ' .$_POST['busqueda']. '<br>
+						Palabras: ' .$_POST['palabras'];
+
+	}
+	else{
+
+		$contenido 	= 	'No se ha realizado la búsqueda correctamente';
+
+	}
+
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -11,28 +34,12 @@
 		require_once('inc/header.inc.php'); 
 		require_once('inc/buscar.inc.php');
 		require_once('inc/aside.inc.php');
+
+
+		echo $contenido;
 	?>
 
 	<h2>Búsqueda</h2>
-
-	<?php 
-
-		if(isset($_POST['busqueda']) && isset($_POST['palabras']) && ($_POST['palabras'] == 1 || $_POST['palabras'] == 0)){
-
-			$busqueda = $_POST['busqueda'];
-			echo 'Busqueda: ' .$busqueda. '<br>';
-			$palabras = $_POST['palabras'];
-			echo 'Palabras: ' .$palabras;
-
-		}
-		else{
-
-			echo 'No se ha realizado la búsqueda correctamente';
-
-		}
-
-
- 	 ?>
 
 </body>
 </html>
