@@ -22,7 +22,7 @@
 			echo 'Login incorrecto';
 	?>
 
-	<form method="POST" action="listarentradas.php">
+	<form method="POST" action="backend/listarentradas.php">
 		<label for="usuario">Usuario: </label>
 			<input type="text" name="usuario"><br>
 		<label for="pass">Contraseña: </label>

@@ -3,33 +3,35 @@
 	require_once('inc/clases/bd.inc.php'); 
 
 	$mensaje = "";
+	$validarFormulario = true;
 
- 	if(!preg_match('/[0-9]/', $_GET['idEntrada'])){
+	//1. Si se accede a esta página con idEntrada con un valor que no sea numérico se redirecciona al indice
+ 	if(!is_numeric($_GET['idEntrada'])){
  		header('Location: /');
  		exit();
  	}
 
+ 	//2. Si llega la variable verificar y su valor es igual a 1 entramos a verificar
  	if(isset($_POST['verificar']) && $_POST['verificar'] == 1){
 
- 		$comprobante = false;
-
-		if(isset($_POST['nombre']) && !preg_match('/^([A-ZÑÁÉÍÓÚ]{1}[a-zñáéíóú\s]*)+$/', $_POST['nombre'])){
+ 		// 2.1 Si existe nombre pero no coincice con la expresion regular, mensaje valdrá un mensaje de error, además validarFormulario valdrá false
+		if(isset($_POST['nombre']) && !preg_match('/([a-zñáéíóúàèìòùäëïöü\s\']{3,15})/', $_POST['nombre'])){
 
 			$mensaje = 'El nombre contiene caracteres inválidos';
-			$comprobante = true;
+			$validarFormulario = false;
 		}
 
-
+		//2.1 Si existe comentario pero no coincice con la expresion regular, mensaje valdrá un mensaje de error, además validarFormulario valdrá false
 		if(isset($_POST['comentario']) && strcmp($_POST['comentario'], strip_tags($_POST['comentario']))){
 
 			$mensaje = 'El comentario contiene caracteres inválidos';
-			$comprobante = true;
+			$validarFormulario = false;
 		}
 		
+		//3. Si llegados a este punto validarFormulario es true, significa que ha pasado todos los filtros y se puede guardar el comentario
+		if($validarFormulario){
 
-		if(!$comprobante){
-
-			$nombre = $_POST['nombre'];
+			$nombre = ucwords( strtolower( trim($_POST['nombre'])));
 			$comentario = $_POST['comentario'];
 
 			$mensaje = '<i>Comentario guardado</i><br><br>
@@ -55,6 +57,7 @@
 
 		echo $mensaje;
 
+		//4. Si verificar no existe o vale distinto a 1 se mostrará el formulario para introducir comentario
 		if(!isset($_POST['verificar']) || $_POST['verificar'] != 1){
 	?>
 

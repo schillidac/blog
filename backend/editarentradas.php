@@ -1,5 +1,5 @@
 <?php 
-	require_once('inc/clases/bd.inc.php'); 
+	require_once('../inc/clases/bd.inc.php'); 
 
 	//1.Variables para usar en el formulario
 
@@ -8,19 +8,29 @@
 	$titulo = "";
 	$contenido = "";
 	$etiqueta = "";
+	$comentarios = "";
 	$validarFormulario = true;
+	$entradas = $bdd->mostrarEntradas();
 
 	/*
 		COMPROBAMOS SI EL USUARIO QUIERE EDITAR O CREAR ENTRADA
 
 		2.Compruebo si llega el ID de la entrada, si llega...
-			la variable titulo valdrá editar entrada, luego se mostrará dentro de un h2
-				la variable identrada valdrá el id de la entrada
-
+			la variable titulo valdrá editar entrada, y las demás variables contendrán los datos de la entrada en si.
 	*/
 	if(isset($_GET['idEntrada'])){
-		$tituloPagina = 'Editar Entrada';
-		$identrada = $_GET['idEntrada'];
+		foreach ($entradas as $entrada) {
+			if($entrada->idEntrada == $_GET['idEntrada']){
+
+				$tituloPagina = 'Editar Entrada';
+				$identrada = $_GET['idEntrada'];
+				$titulo = $entrada->titulo;
+				$contenido = $entrada->cuerpo;
+				$comentarios = '<a href="#">' .count($entrada->comentarios). ' Comentarios </a>';
+			}
+		}
+
+
 	}
 	/*
 		3.Si no se ha enviado un id de entrada por url significa que el usuario quiere crear una entrada nueva
@@ -66,7 +76,7 @@
 			4.5 Si validar formulario es true redirecciono a listar entradas.
 		*/		
 		else{
-			header('Location: /listarentradas.php');
+			header('Location: listarentradas.php');
 			exit();
 		}
 	}
@@ -81,9 +91,8 @@
 <body>
 
 	<?php 
-		require_once('inc/header.inc.php'); 
-		require_once('inc/buscar.inc.php');
-		require_once('inc/aside.inc.php');
+		require_once('../inc/header.inc.php'); 
+		require_once('../inc/aside.inc.php');
 	?>
 	
 	<h2><?= $tituloPagina ?></h2>
@@ -101,6 +110,8 @@
 			<input type="hidden" name="verificar" value="1">
 			<input type="submit" name="enviar">
 	</form>
+
+	<?= $comentarios ?>
 
 </body>
 </html>

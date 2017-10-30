@@ -12,8 +12,8 @@
 	if(isset($_POST['verificador']) && $_POST['verificador'] == 1){
 		/* 
 			2.1-Comprobamos que el usuario llega y cumple con los requisitos
-		*/
-		if(!isset($_POST['usuario'])  || !preg_match('/^([a-zñáéíóúA-ZÑÁÉÍÓÚ0-9\s]*)+$/', $_POST['usuario']))
+		*/												
+		if(!isset($_POST['usuario'])  || !preg_match('/[a-z0-9\s-_*@]{3,15}/', $_POST['usuario']))
 			$permitirRegistro = false;
 		/* 
 			2.2-Comprobamos que la contraseña llega y cumple con los requisitos
@@ -37,7 +37,7 @@
 				/* 
 					2.4.1-Si el usuario existe la variable permitir registro pasa a false;
 				*/
-				if(strcmp($usuario->user, $_POST['usuario']) == 0)
+				if(strcmp($usuario->user, strtolower($_POST['usuario'])) == 0)
 					$permitirRegistro = false;
 
 			}
@@ -56,7 +56,7 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Login</title>
+	<title>Registro</title>
 </head>
 <body>
 	<?php 
@@ -81,7 +81,7 @@
 	?>		
 			<form method="POST" action="#">
 				<label for="usuario">Usuario: </label>
-					<input type="text" name="usuario" value="Sergio"><br>
+					<input type="text" name="usuario" value=""><br>
 				<label for="pass">Contraseña: </label>
 					<input type="password" name="pass" value="15@Hotmail"><br>
 				<label for="pass">Confirmar contraseña: </label>
