@@ -47,36 +47,39 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Principal</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<?php 
-		require_once('inc/header.inc.php'); 
-		require_once('inc/buscar.inc.php');
-		require_once('inc/aside.inc.php');
+	<div id="contenedor">
+		<?php 
+			require_once('inc/header.inc.php'); 
+			require_once('inc/buscar.inc.php');
+			require_once('inc/aside.inc.php');
 
-		echo $mensaje;
+			echo $mensaje;
 
-		//4. Si verificar no existe o vale distinto a 1 se mostrará el formulario para introducir comentario
-		if(!isset($_POST['verificar']) || $_POST['verificar'] != 1){
-	?>
+			//4. Si verificar no existe o vale distinto a 1 se mostrará el formulario para introducir comentario
+			if(!isset($_POST['verificar']) || $_POST['verificar'] != 1){
+		?>
 
-	<h2>Añadir comentario</h2>
-	
-		<form method="POST" action="#">
-			<p>Se va a añadir un comentario a la entrada XXX<br>
-				*<i>Los comentarios están sujetos a la moderación de un administrador</i></p>
-			<label for="nombre">Nombre: </label>
-				<input type="text" name="nombre"><br>
-			<label for="comentario">Comentario: </label>
-				<input type="text" name="comentario"><br>
-				<input type="hidden" name="verificar" value="1">
-				<input type="hidden" name="entrada" value="<?= $_GET['idEntrada'] ?>">
-			<input type="submit" name="enviar">
-		</form>
+		<h2>Añadir comentario</h2>
+		
+			<form method="POST" action="#">
+				<p>Se va a añadir un comentario a la entrada XXX<br>
+					*<i>Los comentarios están sujetos a la moderación de un administrador</i></p>
+				<label for="nombre">Nombre: </label>
+					<input type="text" name="nombre"><br>
+				<label for="comentario">Comentario: </label>
+					<input type="text" name="comentario"><br>
+					<input type="hidden" name="verificar" value="1">
+					<input type="hidden" name="entrada" value="<?= $_GET['idEntrada'] ?>">
+				<input type="submit" name="enviar">
+			</form>
 
-	<?php } ?>
-
-
+		<?php } ?>
+	</div>
 </body>
 </html>

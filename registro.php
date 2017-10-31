@@ -56,41 +56,46 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Registro</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<?php 
-		require_once('inc/header.inc.php'); 
-		require_once('inc/buscar.inc.php');
-		require_once('inc/aside.inc.php');
-	?>
+	<div id="contenedor">
+		<?php 
+			require_once('inc/header.inc.php'); 
+			require_once('inc/buscar.inc.php');
+			require_once('inc/aside.inc.php');
+		?>
 
-	<h2>Registro</h2>
+		<h2>Registro</h2>
 
-	<?php 
+		<?php 
 
-		//si el formulario está validado muestra mensaje
-		if($permitirRegistro){
-			echo 'Registro realizado con éxito';
-		}
-		//si tiene algún error muestra mensaje, para esto la variable $permitirRegistro habrá cambiado a false en las comprobaciones, sino por defecto muestra solo el formulario.
-		else{
+			//si el formulario está validado muestra mensaje
+			if($permitirRegistro){
+				echo 'Registro realizado con éxito';
+			}
+			//si tiene algún error muestra mensaje, para esto la variable $permitirRegistro habrá cambiado a false en las comprobaciones, sino por defecto muestra solo el formulario.
+			else{
 
-			if(!$permitirRegistro && isset($_POST['verificador']))
-				echo 'Algo no ha salido bien';
-	?>		
-			<form method="POST" action="#">
-				<label for="usuario">Usuario: </label>
-					<input type="text" name="usuario" value=""><br>
-				<label for="pass">Contraseña: </label>
-					<input type="password" name="pass" value="15@Hotmail"><br>
-				<label for="pass">Confirmar contraseña: </label>
-					<input type="password" name="confirpass" value="15@Hotmail"><br>
-				<input type="hidden" name="verificador" value="1">
-				<input type="submit" value="enviar">
-			</form>
+				if(!$permitirRegistro && isset($_POST['verificador']))
+					echo 'Algo no ha salido bien';
+		?>		
+				<form method="POST" action="#">
+					<label for="usuario">Usuario: </label>
+						<input type="text" name="usuario" value=""><br>
+					<label for="pass">Contraseña: </label>
+						<input type="password" name="pass" value="15@Hotmail"><br>
+					<label for="pass">Confirmar contraseña: </label>
+						<input type="password" name="confirpass" value="15@Hotmail"><br>
+					<input type="hidden" name="verificador" value="1">
+					<input type="submit" value="enviar">
+				</form>
 
-	<?php } ?>
+		<?php } ?>
+	</div>
 
 </body>
 </html>

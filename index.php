@@ -24,7 +24,7 @@
 
 				if($entrada->idEntrada == $_GET['idEntrada']){
 
-					$contenido 	.= 	'<article>
+					$contenido 	.= 	'<article class="articulo-home">
 										<h2>' .$entrada->titulo .'</h2>
 										<div> Creado por ' .$entrada->usuario. ' en la fecha ' .$entrada->fechaHora. '</div>
 										<p>' .$entrada->cuerpo. '</p>
@@ -58,7 +58,7 @@
 				if((isset($_GET['mes']) && $fecha[1] == $_GET['mes'] && isset($_GET['ano']) && $fecha[2] == $_GET['ano']) ||
 				   (isset($_GET['ano']) && $fecha[2] == $_GET['ano'] && !isset($_GET['mes']))){
 
-					$contenido 	.= 	'<article>
+					$contenido 	.= 	'<article class="articulo-home">
 										<h3><a href="/?idEntrada=' .$entrada->idEntrada. '">' .$entrada->titulo .'</a></h3>
 										<div> ' .$entrada->fechaHora. ' </div>
 										<p>' .$entrada->cuerpo. '</p>
@@ -80,7 +80,7 @@
 				if($indice > 2)
 					break;
 
-				$contenido 	.=	'<article>
+				$contenido 	.=	'<article class="articulo-home">
 									<h3><a href="/?idEntrada=' .$entrada->idEntrada. '">' .$entrada->titulo .'</a></h3>
 									<div> ' .$entrada->fechaHora. ' </div>
 									<p>' .$entrada->cuerpo. '</p>
@@ -96,18 +96,23 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Principal</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<?php 
-		require_once('inc/header.inc.php'); 
-		require_once('inc/buscar.inc.php');
-		require_once('inc/aside.inc.php');
-	?>
+	<div id="contenedor">
+		<?php 
+			require_once('inc/header.inc.php'); 
+			require_once('inc/buscar.inc.php');
+		?>
 
-	<section>
-		<?= $contenido ?>
-	</section>
-	
+		<section id="contenido">
+			<?= $contenido ?>
+		</section><?php
+			require_once('inc/aside.inc.php');
+		?>
+	</div>	
 </body>
 </html>

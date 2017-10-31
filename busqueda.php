@@ -29,19 +29,22 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<?php 
-		require_once('inc/header.inc.php'); 
-		require_once('inc/buscar.inc.php');
-		require_once('inc/aside.inc.php');
+	<div id="contenedor">
+		<?php 
+			require_once('inc/header.inc.php'); 
+			require_once('inc/buscar.inc.php');
+			require_once('inc/aside.inc.php');
 
-		//4. Se muestra el resultado de la búsqueda
-		echo $resultadoBusqueda;
-	?>
-
-	<h2>Búsqueda</h2>
-
+			echo '<h2>Búsqueda</h2>';
+			//4. Se muestra el resultado de la búsqueda
+			echo $resultadoBusqueda;
+		?>
+	</div>
 </body>
 </html>

@@ -1,0 +1,71 @@
+body{
+	padding: 0px 15px;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+header{
+	margin-bottom: 30px;
+
+}
+header h1{
+	text-align: center;
+}
+header img{
+	max-width: 150px;
+}
+#menu-principal ul{
+	margin: 0 auto;
+	display: table;
+	padding: 0px;
+}
+#menu-principal li{
+	display: inline-block;
+}
+#menu-principal a{
+	padding: 15px;
+}
+
+
+
+/*
+	ESTILO PARA PANTALLAS DE ORDENADOR
+*/
+
+@media (min-width: 1000px) {
+
+	div#contenedor{
+		max-width:1024px;
+		margin: 0 auto;
+	}
+	header{
+		position: relative;
+		height: 100px;
+	}
+	header h1{
+		position: absolute;
+		left: 0px;
+	}
+	header #menu-principal{
+		position: absolute;
+		right: 0px;
+	}
+	aside#archivo{
+		display: inline-block;
+		width: 20%;
+	}
+	section#contenido{
+		display: inline-block;
+		width: 80%;
+		padding: 1%;
+	}
+	.articulo-home{
+		width:50%;
+		float:left;
+		padding: 10px;
+		box-sizing: border-box;
+	}
+}

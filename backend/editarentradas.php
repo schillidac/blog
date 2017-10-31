@@ -86,32 +86,35 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?= $tituloPagina ?></title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+	<div id="contenedor">
+		<?php 
+			require_once('../inc/header.inc.php'); 
+			require_once('../inc/aside.inc.php');
+		?>
+		
+		<h2><?= $tituloPagina ?></h2>
 
-	<?php 
-		require_once('../inc/header.inc.php'); 
-		require_once('../inc/aside.inc.php');
-	?>
-	
-	<h2><?= $tituloPagina ?></h2>
+		<form method="POST" action="#">
+			<label for="id">ID entrada: </label>
+				<input type="number" name="id" value="<?=$identrada?>"><br>
+			<label for="titulo">Título: </label>	
+				<input type="text" name="titulo" value="<?= $titulo ?>"><br>
+			<label for="contenido">Contenido: </label>	
+				<input type="text" name="contenido" value="<?= $contenido ?>"><br>
+			<label for="etiquetas">Etiquetas: </label>	
+				<input type="text" name="etiqueta" value="<?= $etiqueta ?>"><br>
+				<input type="file" name="imagen"><br>
+				<input type="hidden" name="verificar" value="1">
+				<input type="submit" name="enviar">
+		</form>
 
-	<form method="POST" action="#">
-		<label for="id">ID entrada: </label>
-			<input type="number" name="id" value="<?=$identrada?>"><br>
-		<label for="titulo">Título: </label>	
-			<input type="text" name="titulo" value="<?= $titulo ?>"><br>
-		<label for="contenido">Contenido: </label>	
-			<input type="text" name="contenido" value="<?= $contenido ?>"><br>
-		<label for="etiquetas">Etiquetas: </label>	
-			<input type="text" name="etiqueta" value="<?= $etiqueta ?>"><br>
-			<input type="file" name="imagen"><br>
-			<input type="hidden" name="verificar" value="1">
-			<input type="submit" name="enviar">
-	</form>
-
-	<?= $comentarios ?>
-
+		<?= $comentarios ?>
+	</div>
 </body>
 </html>

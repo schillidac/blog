@@ -116,46 +116,50 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+	<div id="contenedor">
+		<?php 
+			require_once('../inc/header.inc.php'); 
+			require_once('../inc/aside.inc.php');
+		?>
+		
+		<h2>Listar Entradas</h2>
 
-	<?php 
-		require_once('../inc/header.inc.php'); 
-		require_once('../inc/aside.inc.php');
-	?>
-	
-	<h2>Listar Entradas</h2>
+		<a href="editarentradas.php">Crear una entrada</a><br>
+		
+		<h3>Filtrar entradas</h3>
 
-	<a href="editarentradas.php">Crear una entrada</a><br>
-	
-	<h3>Filtrar entradas</h3>
+		<i>*Recuerda, el mes tiene dos cifras, el año cuatro y la búsqueda no debe contener HTML.</i><br><br>
 
-	<i>*Recuerda, el mes tiene dos cifras, el año cuatro y la búsqueda no debe contener HTML.</i><br><br>
-
-	<form method="GET" action="#">
-		<label for="mes">Mes: </label>
-			<select name="mes">
-				<?php
-					foreach($meses as $numeroMes => $nombreMes){
-						if(strcmp($nombreMes, $mes) == 0)
-							echo '<option value="' .$numeroMes. '" selected>' .$nombreMes. '</option>';
-						else
-							echo '<option value="' .$numeroMes. '">' .$nombreMes. '</option>';
-					}
-				?>
-			</select>
-		<label for="ano">Año: </label>
-			<input type="number" name="ano" placeholder="2017" value="<?= $ano ?>">
-		<label for="busqueda">Búsqueda: </label>
-			<input type="text" name="busqueda" placeholder="Introduce algo..." value="<?= $busqueda ?>">
-			<input type="hidden" name="verificar" value="1">
-			<input type="submit" name="enviar">
-	</form><br>
-	
-	<section>
-		<?= $contenido ?>
-	</section>
+		<form method="GET" action="#">
+			<label for="mes">Mes: </label>
+				<select name="mes">
+					<?php
+						foreach($meses as $numeroMes => $nombreMes){
+							if(strcmp($nombreMes, $mes) == 0)
+								echo '<option value="' .$numeroMes. '" selected>' .$nombreMes. '</option>';
+							else
+								echo '<option value="' .$numeroMes. '">' .$nombreMes. '</option>';
+						}
+					?>
+				</select>
+			<label for="ano">Año: </label>
+				<input type="number" name="ano" placeholder="2017" value="<?= $ano ?>">
+			<label for="busqueda">Búsqueda: </label>
+				<input type="text" name="busqueda" placeholder="Introduce algo..." value="<?= $busqueda ?>">
+				<input type="hidden" name="verificar" value="1">
+				<input type="submit" name="enviar">
+		</form><br>
+		
+		<section>
+			<?= $contenido ?>
+		</section>
+	</div>
 
 </body>
 </html>
