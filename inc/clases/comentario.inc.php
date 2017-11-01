@@ -8,6 +8,7 @@ class Comentario{
 	private $autor;
 	private $texto;
 
+	//constructor con todos los atributos
 	public function __construct($idComentario, $idEntrada, $fechaHora, $autor, $texto){
 
 		$this->idComentario = $idComentario;
@@ -18,6 +19,7 @@ class Comentario{
 
 	}
 
+	//métodos mágicos set y get
 	public function __set($atributo, $valor){
 
 		$this->$atributo = $valor;

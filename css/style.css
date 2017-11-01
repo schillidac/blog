@@ -1,5 +1,8 @@
-body{
-	padding: 0px 15px;
+/*
+	MÓVIL, TABLET Y PANTALLAS PEQUEÑAS
+*/
+#cabecera, #buscador, #contenido, #archivo{
+	padding: 0 1%;
 }
 li{
 	list-style: none;
@@ -7,15 +10,14 @@ li{
 a{
 	text-decoration: none;
 }
-header{
+header, #buscador{
 	margin-bottom: 30px;
-
 }
 header h1{
 	text-align: center;
 }
 header img{
-	max-width: 150px;
+	max-width: 100px;
 }
 #menu-principal ul{
 	margin: 0 auto;
@@ -29,8 +31,6 @@ header img{
 	padding: 15px;
 }
 
-
-
 /*
 	ESTILO PARA PANTALLAS DE ORDENADOR
 */
@@ -43,7 +43,7 @@ header img{
 	}
 	header{
 		position: relative;
-		height: 100px;
+		height: 135px;
 	}
 	header h1{
 		position: absolute;
@@ -52,20 +52,21 @@ header img{
 	header #menu-principal{
 		position: absolute;
 		right: 0px;
+		top: 50px;
 	}
-	aside#archivo{
+	#contenido, #archivo, .articulo-home{
 		display: inline-block;
-		width: 20%;
-	}
-	section#contenido{
-		display: inline-block;
-		width: 80%;
+		box-sizing: border-box;
+		vertical-align: top;
 		padding: 1%;
 	}
+	#archivo{
+		width: 20%;
+	}
+	#contenido{
+		width: 80%;
+	}
 	.articulo-home{
-		width:50%;
-		float:left;
-		padding: 10px;
-		box-sizing: border-box;
+	    width: 50%;
 	}
 }

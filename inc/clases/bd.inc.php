@@ -16,6 +16,8 @@ class Bd{
 
 	}
 
+
+	//este método no era necesario ponerlo porque la eliminación se hará mediante consultas
 	public function eliminarEntrada($idEntrada){
 
 		$contador = 0;
@@ -24,6 +26,7 @@ class Bd{
 
 			if($entrada->idEntrada == $idEntrada){
 
+				//se elimina la posicion del array con unset y se reordena con array_values
 				unset($this->entradas[$contador]);
 				$this->entradas = array_values($this->entradas);
 
@@ -49,6 +52,7 @@ class Bd{
 
 	}
 
+	//este método no era necesario ponerlo porque la eliminación se hará mediante consultas
 	public function eliminarUsuario($user){
 
 		$contador = 0;
@@ -57,6 +61,7 @@ class Bd{
 
 			if($usuario->user == $user){
 
+				//se elimina la posicion del array con unset y se reordena con array_values
 				unset($this->usuarios[$contador]);
 				$this->usuarios = array_values($this->usuarios);
 				
@@ -80,7 +85,7 @@ class Bd{
 
 			if($idEntrada == $entrada->idEntrada){
 
-				$entrada->insertarComentario($idComentario, $idEntrada, $fechaHora, $autor, $texto );
+				$entrada->insertarComentario($idComentario, $idEntrada, $fechaHora, $autor, $texto);
 
 			}
 		}
@@ -88,18 +93,18 @@ class Bd{
 
 }
 
-
+$lorem = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis porro placeat dolorum neque ipsa facilis atque architecto laboriosam. Nobis corporis laboriosam est, minima deserunt sed tempora quae pariatur nesciunt excepturi.';
 //OBJETOS A CREAR
 //base de datos
 $bdd = new Bd();
 //entradas
-$bdd->insertarEntrada(1, '15:00 18/1/2017', 'Entrada 1', 'Este es un párrafo','sergio');
-$bdd->insertarEntrada(2, '15:00 18/2/2016', 'Entrada 2', 'Este es un párrafo','sergio');
-$bdd->insertarEntrada(3, '14:00 18/3/2017', 'Entrada 3', 'Este es un párrafo','sergio');
+$bdd->insertarEntrada(1, '15:00 18/1/2017', 'Entrada de prueba para el blog 1', $lorem,'sergio');
+$bdd->insertarEntrada(2, '15:00 18/2/2016', 'Entrada de prueba para el blog 2', $lorem,'sergio');
+$bdd->insertarEntrada(3, '14:00 18/3/2017', 'Entrada de prueba para el blog 3', $lorem,'sergio');
 
 
 //comentarios
-$bdd->insertarComentario(1, 1, '18:00 18-10-2017', 'Sergio', 'Esto es un comentario');
+$bdd->insertarComentario(1, 1, '18:00 18-10-2017', 'Sergio', $lorem);
 //$bdd->insertarComentario(2, 1, '18-10-2017 18:30', 'Jose', 'Esto es otro comentario');
 
 //usuarios

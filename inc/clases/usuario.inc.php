@@ -7,6 +7,7 @@ class Usuario{
 	private $pass;
 	private $rol;
 
+	//construtor con todos los parametros
 	public function __construct($user, $nombre, $pass, $rol){
 
 		$this->user = $user;
@@ -16,7 +17,7 @@ class Usuario{
 
 	}
 
-
+	//metodos mágicos set y get
 	public function __set($atributo, $valor){
 
 		$this->$atributo = $valor;
